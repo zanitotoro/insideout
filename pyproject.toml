@@ -1,0 +1,49 @@
+[project]
+name = "insider-edge"
+version = "0.1.0"
+description = "A truthful yes/no on whether a tradeable edge survives in insider open-market purchases, after realistic costs and out-of-sample."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx[http2]>=0.27",
+    "aiolimiter>=1.1",
+    "tenacity>=8.2",
+    "polars>=1.0",
+    "duckdb>=1.0",
+    "pyarrow>=16",
+    "pydantic>=2.7",
+    "numpy>=1.26",
+    "scipy>=1.13",
+    "statsmodels>=0.14",
+    "python-dateutil>=2.9",
+    # Apple-silicon GPU array math (Phases 2/5). Guarded so the lock stays portable.
+    "mlx>=0.18; platform_machine == 'arm64' and sys_platform == 'darwin'",
+    "yfinance>=1.4.1",
+]
+
+[project.scripts]
+insider-edge = "insider_edge.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/insider_edge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

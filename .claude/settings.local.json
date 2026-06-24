@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv --version)",
+      "Bash(sw_vers)",
+      "Bash(uv sync *)",
+      "Bash(uv run *)",
+      "Bash(uv add *)",
+      "Bash(git add *)"
+    ]
+  }
+}

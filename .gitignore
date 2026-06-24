@@ -1,0 +1,19 @@
+# Data store — raw SEC zips and the parquet event store are large and reproducible.
+/data/
+
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+
+# Local Claude Code settings (machine-specific)
+.claude/settings.local.json
